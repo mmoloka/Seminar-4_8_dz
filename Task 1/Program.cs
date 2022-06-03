@@ -29,7 +29,34 @@ void PrintArray(int[,] array)
         }
 }
 
+void SortRowsToMinimum (int [,] array)
+{
+    for(int i = 0; i < array.GetLength(0); i++)
+        {
+            int temp = 0;
+            int length = array.GetLength(1) - 1;
+            while(length > 0)
+            {
+                for(int j = 0; j < length; j++)
+                {
+                    if(array[i, j] < array[i,j+1])
+                    {
+                        temp = array[i, j];
+                        array[i,j] = array[i, j + 1];
+                        array[i, j + 1] = temp;
+                    }
+                }
+                length--;          
+
+            }
+        }
+}
+
 int m = GetDimension("Введите количество строк массива: ");
 int n = GetDimension("Введите количество столбцов массива: ");
 int [,] arr = FillArray(m, n);
+Console.WriteLine("Исходный массив: ");
+PrintArray(arr);
+Console.WriteLine();
+SortRowsToMinimum(arr);
 PrintArray(arr);
